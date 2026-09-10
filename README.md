@@ -10,6 +10,12 @@ Desde el directorio del repositorio:
 ./install.sh
 ```
 
+Si solo necesitas las fuentes de iconos en otra PC Fedora:
+
+```bash
+./reparar font.sh
+```
+
 El instalador:
 
 - instala dependencias usando `dnf`, `pacman` o `apt-get`;
