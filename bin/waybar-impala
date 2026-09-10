@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+lock_file="${XDG_RUNTIME_DIR:-/tmp}/waybar-impala.lock"
+exec 9>"${lock_file}"
+flock -n 9 || exit 0
+
+exec "${HOME}/.cargo/bin/impala"

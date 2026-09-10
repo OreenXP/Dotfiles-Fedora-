@@ -1,0 +1,13 @@
+{
+  "custom/mako": {
+    "format": "",
+    "tooltip-format": "Notificaciones: clic para cerrar; clic derecho para recuperar la última",
+    "on-click": "makoctl dismiss -a",
+    "on-click-right": "makoctl restore"
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip-format": "Opciones de sesión",
+    "on-click": "sh ~/.config/waybar/scripts/power-menu.sh"
+  }
+}

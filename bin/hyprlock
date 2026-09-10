@@ -1,0 +1,12 @@
+#!/bin/sh
+
+state="${XDG_STATE_HOME:-$HOME/.local/state}/hypr-wallpaper/selected"
+wall=""
+if [ -r "$state" ]; then
+  selected=$(tr -d ' \n' < "$state")
+  [ -z "$selected" ] || [ ! -f "$selected" ] || wall="$selected"
+fi
+[ -n "$wall" ] || wall="${HOME}/Documentos/Wallpapers/wallhaven-qrow67_1920x1080.png"
+temporary="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/hyprlock.conf"
+sed "s|^[[:space:]]*path = .*|path = $wall|" "${HOME}/.config/hypr/hyprlock.conf" > "$temporary"
+exec /usr/bin/hyprlock -c "$temporary" "$@"

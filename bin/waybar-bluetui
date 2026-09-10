@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+lock_file="${XDG_RUNTIME_DIR:-/tmp}/waybar-bluetui.lock"
+exec 9>"${lock_file}"
+flock -n 9 || exit 0
+
+bluetoothctl scan off >/dev/null 2>&1 || true
+if bluetoothctl show 2>/dev/null | grep -q 'Powered: no'; then
+  bluetoothctl power on >/dev/null 2>&1 || true
+fi
+
+exec "${HOME}/.local/bin/bluetui"

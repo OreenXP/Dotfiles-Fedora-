@@ -1,0 +1,41 @@
+configuration {
+    show-icons: true;
+    hover-select: false;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+* {
+    background-color: transparent;
+    text-color: #e6e6e6;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+window {
+    width: 800px;
+    location: center;
+    anchor: center;
+    background-color: #0b0b0b;
+    border: 1px;
+    border-color: #2a2a2a;
+}
+mainbox { children: [ listview ]; padding: 12px; }
+listview {
+    columns: 3;
+    lines: 2;
+    fixed-height: false;
+    dynamic: true;
+    spacing: 8px;
+    scrollbar: false;
+}
+element {
+    children: [ element-icon ];
+    padding: 4px;
+    border: 1px;
+    border-color: #2a2a2a;
+    background-color: #141414;
+}
+element selected.normal { border-color: #ffffff; background-color: #1f1f1f; }
+element-icon { size: 240px; horizontal-align: 0.5; vertical-align: 0.5; }

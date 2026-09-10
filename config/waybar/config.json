@@ -1,0 +1,32 @@
+{
+  "include": [
+    "$HOME/.config/waybar/Modules",
+    "$HOME/.config/waybar/ModulesWorkspaces",
+    "$HOME/.config/waybar/ModulesCustom",
+    "$HOME/.config/waybar/ModulesGroups"
+  ],
+  "layer": "top",
+  "position": "top",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "spacing": 4,
+  "margin-left": 8,
+  "margin-right": 8,
+  "margin-top": 6,
+  "modules-left": [
+    "hyprland/workspaces#rw",
+    "tray"
+  ],
+  "modules-center": [
+    "clock#2"
+  ],
+  "modules-right": [
+    "hyprland/window",
+    "group/mobo_drawer",
+    "battery",
+    "group/audio",
+    "custom/power"
+  ],
+  "height": 26
+}
