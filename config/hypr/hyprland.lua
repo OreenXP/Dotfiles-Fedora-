@@ -249,7 +249,7 @@ hl.config({
 
 hl.config({
     input = {
-        kb_layout  = "us",
+        kb_layout  = "us,es",
         kb_variant = "",
         kb_model   = "",
         kb_options = "",
@@ -299,6 +299,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind(mainMod .. " + SHIFT + space", hl.dsp.exec_cmd("python3 ~/.config/hypr/scripts/wallpaper-picker.py"))
+hl.bind(mainMod .. " + CTRL + space", hl.dsp.exec_cmd("python3 ~/.config/hypr/scripts/language-osd.py"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("sh ~/.config/waybar/scripts/power-menu.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
