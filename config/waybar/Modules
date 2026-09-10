@@ -1,0 +1,385 @@
+{
+  "temperature": {
+    "interval": 10,
+    "tooltip": true,
+    "critical-threshold": 82,
+    "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      ""
+    ],
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input"
+  },
+  "backlight": {
+    "interval": 2,
+    "align": 0,
+    "rotate": 0,
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      "󰃝 ",
+      "󰃞 ",
+      "󰃟 ",
+      "󰃠 "
+    ],
+    "format": "{icon}",
+    "tooltip-format": "backlight {percent}%",
+    "icon-size": 10,
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "smooth-scrolling-threshold": 1
+  },
+  "backlight#2": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "align": 0,
+    "rotate": 0,
+    "full-at": 100,
+    "design-capacity": false,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span font_family=\"Symbols Nerd Font Mono\">{icon}</span> {capacity}%",
+    "format-charging": "<span font_family=\"Symbols Nerd Font Mono\">{icon}</span> {capacity}% <span font_family=\"Font Awesome 6 Free\"></span>",
+    "format-plugged": "<span font_family=\"Symbols Nerd Font Mono\">󰁹</span> {capacity}%",
+    "format-alt-click": "click",
+    "format-full": "<span font_family=\"Symbols Nerd Font Mono\">{icon}</span> Full",
+    "format-alt": "<span font_family=\"Symbols Nerd Font Mono\">{icon}</span> {time}",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-time": "{H}h {M}min",
+    "tooltip": true,
+    "tooltip-format": "{timeTo} {power}w",
+    "bat": "BAT1"
+  },
+  "bluetooth": {
+    "format": " ",
+    "format-disabled": "󰂳",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": " {device_alias}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
+    "tooltip": true,
+     "on-click": "kitty --class bluetui -e bluetui"
+  },
+  "clock": {
+    "interval": 1,
+    "format": " {:%H:%M:%S}",
+    "format-alt": " {:%H:%M   %Y, %d %B, %A}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{:%V}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "actions": {
+    "on-click-right": "mode",
+    "on-click-forward": "tz_up",
+    "on-click-backward": "tz_down",
+    "on-scroll-up": "shift_up",
+    "on-scroll-down": "shift_down"
+  },
+  "clock#2": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%A  |  %I:%M %p  |  %e %B}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "clock#3": {
+    "format": "{:%H:%M - %d/%b}",
+    "tooltip": false
+  },
+  "clock#4": {
+    "interval": 60,
+    "format": "{:%B | %a %d, %Y | %H:%M}",
+    "format-alt": "{:%a %b %d, %G}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "clock#5": {
+    "format": "{:%a %d | %H:%M}",
+    "format-alt": "{:%A, %d %B, %Y (%R)}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "cpu": {
+    "format": "{usage}% 󰍛",
+    "interval": 1,
+    "min-length": 5,
+    "format-alt-click": "click",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
+    "on-click-right": "gnome-system-monitor"
+  },
+  "disk": {
+    "interval": 30,
+    "path": "/",
+    "format": "{percentage_used}% 󰋊",
+    "tooltip-format": "{used} used out of {total} on {path} ({percentage_used}%)"
+  },
+  "hyprland/language": {
+    "format": "Lang: {}",
+    "format-en": "US",
+    "format-tr": "Korea",
+    "keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "hyprctl switchxkblayout $SET_KB next"
+  },
+  "hyprland/submap": {
+    "format": "<span style=\"italic\">  {}</span>",
+    "tooltip": false
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 25,
+    "separate-outputs": true,
+    "offscreen-css": true,
+    "offscreen-css-text": "(inactive)",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": " $1",
+      "(.*) - fish": "> [$1]",
+      "(.*) - zsh": "> [$1]",
+      "(.*) - $term": "> [$1]"
+    }
+  },
+  "idle_inhibitor": {
+    "tooltip": true,
+    "tooltip-format-activated": "Idle_inhibitor active",
+    "tooltip-format-deactivated": "Idle_inhibitor not active",
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+  },
+  "keyboard-state": {
+    "capslock": true,
+    "format": {
+      "numlock": "N {icon}",
+      "capslock": "󰪛 {icon}"
+    },
+    "format-icons": {
+      "locked": "",
+      "unlocked": ""
+    }
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{used:0.1f}G 󰾆",
+    "format-alt": "{percentage}% 󰾆",
+    "format-alt-click": "click",
+    "tooltip": true,
+    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G"
+  },
+  "mpris": {
+    "interval": 10,
+    "format": "{player_icon} ",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "on-click-middle": "playerctl play-pause",
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "scroll-step": 5.0,
+    "smooth-scrolling-threshold": 1,
+    "tooltip": true,
+    "tooltip-format": "{status_icon} {dynamic}\nLeft Click: previous\nMid Click: Pause\nRight Click: Next",
+    "player-icons": {
+      "chromium": "",
+      "default": "",
+      "firefox": "",
+      "kdeconnect": "",
+      "mopidy": "",
+      "mpv": "󰐹",
+      "spotify": "",
+      "vlc": "󰕼"
+    },
+    "status-icons": {
+      "paused": "󰐎",
+      "playing": "",
+      "stopped": ""
+    },
+    "max-length": 30
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌘",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "max-length": 30,
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ]
+  },
+  "network#speed": {
+    "interval": 1,
+    "format": "{ifname}",
+    "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-ethernet": "󰌘  {bandwidthUpBytes}  {bandwidthDownBytes}",
+    "format-disconnected": "󰌙",
+    "tooltip-format": "{ipaddr}",
+    "format-linked": "󰈁 {ifname} (No IP)",
+    "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} 󰌘",
+    "tooltip-format-disconnected": "󰌙 Disconnected",
+    "min-length": 24,
+    "max-length": 24,
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon} ",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} 󰂰 {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        "󰕾",
+        ""
+      ]
+    },
+    "scroll-step": 5.0,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "kitty -e alsamixer",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "tooltip-format": "{icon} {desc} | {volume}%",
+    "smooth-scrolling-threshold": 1,
+    "ignored-sinks": [
+      "Easy Effects Sink"
+    ]
+  },
+  "pulseaudio#1": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{icon} {volume}%",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": "󰸈",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pamixer --toggle-mute",
+    "on-click-right": "pavucontrol -t 3",
+    "tooltip": true,
+    "tooltip-format": "{icon} {desc} | {volume}%"
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "kitty -e alsamixer",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+    "tooltip-format": "{source_desc} | {source_volume}%",
+    "scroll-step": 5
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+  "wireplumber": {
+    "format": "{icon} {volume} %",
+    "format-muted": " Mute",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol -t 3",
+    "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "format-icons": [
+      "",
+      "",
+      "󰕾",
+      ""
+    ]
+  },
+  "wlr/taskbar": {
+    "format": "{icon} {name}",
+    "icon-size": 16,
+    "all-outputs": false,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "wofi",
+      "rofi",
+      "kitty",
+      "kitty-dropterm"
+    ]
+  }
+}
