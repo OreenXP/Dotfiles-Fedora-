@@ -1,9 +1,0 @@
-[Unit]
-Description=Selected wallpaper for Hyprland
-PartOf=graphical-session.target
-After=graphical-session.target
-
-[Service]
-ExecStart=/usr/bin/python3 %h/.config/hypr/scripts/wallpaper-picker.py --restore
-Restart=on-failure
-RestartSec=2
