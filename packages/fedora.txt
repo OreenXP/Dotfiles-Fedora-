@@ -17,3 +17,7 @@ brightnessctl
 ImageMagick
 libnotify
 fontconfig
+fontawesome-6-free-fonts
+jetbrains-mono-fonts
+curl
+unzip

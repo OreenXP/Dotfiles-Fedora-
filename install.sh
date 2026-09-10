@@ -11,7 +11,7 @@ fi
 
 install_packages() {
   # Hyprland es obligatorio: el resto acompaña a esta configuración.
-  local packages=(hyprland hyprland-guiutils waybar mako rofi fastfetch hyprlock kitty nautilus swaybg grim slurp wl-clipboard playerctl brightnessctl ImageMagick libnotify)
+  local packages=(hyprland hyprland-guiutils waybar mako rofi fastfetch hyprlock kitty nautilus swaybg grim slurp wl-clipboard playerctl brightnessctl ImageMagick libnotify fontawesome-6-free-fonts jetbrains-mono-fonts curl unzip)
   if command -v dnf >/dev/null 2>&1; then
     sudo dnf install -y "${packages[@]}"
   elif command -v pacman >/dev/null 2>&1; then
@@ -25,6 +25,18 @@ install_packages() {
   fi
 }
 
+install_icon_font() {
+  local font_dir="${HOME}/.local/share/fonts/NerdFontsSymbolsOnly"
+  if fc-list 2>/dev/null | grep -q 'Symbols Nerd Font'; then
+    return 0
+  fi
+  mkdir -p "${font_dir}"
+  curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip" -o "${font_dir}/symbols.zip"
+  unzip -oq "${font_dir}/symbols.zip" -d "${font_dir}"
+  rm -f "${font_dir}/symbols.zip"
+  fc-cache -f "${font_dir}"
+}
+
 backup_and_install() {
   local source="$1" target="$2"
   if [[ -e "${target}" || -L "${target}" ]]; then
@@ -36,6 +48,7 @@ backup_and_install() {
 }
 
 install_packages
+install_icon_font
 
 if ! command -v Hyprland >/dev/null 2>&1 && ! command -v hyprland >/dev/null 2>&1; then
   printf '%s\n' 'Error: Hyprland no quedó instalado.' >&2

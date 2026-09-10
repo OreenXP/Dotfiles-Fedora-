@@ -13,6 +13,7 @@ Desde el directorio del repositorio:
 El instalador:
 
 - instala dependencias usando `dnf`, `pacman` o `apt-get`;
+- instala Font Awesome, JetBrains Mono y descarga `Symbols Nerd Font` para los iconos;
 - crea una copia de seguridad de cualquier configuración existente;
 - instala el servicio `hypr-wallpaper.service` y lo habilita para el usuario;
 - conserva los fondos fuera del repositorio en `~/Documentos/Wallpapers`.
