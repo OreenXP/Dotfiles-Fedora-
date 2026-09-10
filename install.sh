@@ -68,6 +68,8 @@ done < <(find "${ROOT_DIR}/config" -type f -print0)
 chmod +x "${HOME}/.config/hypr/scripts/"*.py "${HOME}/.config/waybar/scripts/"*.sh
 systemctl --user daemon-reload
 systemctl --user enable hypr-wallpaper.service
+mkdir -p "${HOME}/.local/state/dotfiles"
+git -C "${ROOT_DIR}" rev-parse HEAD > "${HOME}/.local/state/dotfiles/deployed-revision"
 
 printf '\n%s\n' 'Configuración instalada.'
 printf '%s\n' "Copias de seguridad: ${BACKUP_DIR}"

@@ -16,6 +16,20 @@ Si solo necesitas las fuentes de iconos en otra PC Fedora:
 ./reparar font.sh
 ```
 
+Si Bluetui no funciona:
+
+```bash
+"./reparar bluetui.sh"
+```
+
+Para actualizar otra PC después de subir cambios nuevos:
+
+```bash
+./actualizar.sh
+```
+
+La primera ejecución instala todos los archivos. Las siguientes hacen `git pull` y aplican solamente los archivos modificados desde la última actualización.
+
 El instalador:
 
 - instala dependencias usando `dnf`, `pacman` o `apt-get`;
