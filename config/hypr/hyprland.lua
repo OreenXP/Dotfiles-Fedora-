@@ -292,6 +292,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(terminal .. " --class bluetui -e ${HOME}/.local/bin/bluetui"))
+hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("sh ~/.config/rofi/scripts/shortcuts.sh"))
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("${HOME}/.local/bin/hyprlock"))
@@ -307,8 +308,8 @@ hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("kitty --single-instance --class impa
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
--- Screenshot region selection copied to clipboard
-hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
+-- Screenshot region selection copied to clipboard (single instance)
+hl.bind("Print", hl.dsp.exec_cmd("sh ~/.config/hypr/scripts/screenshot-region.sh"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))

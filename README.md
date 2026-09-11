@@ -33,6 +33,10 @@ El cambio de idioma del teclado usa `us,es`. Pulsa `SUPER + CTRL + Space` para a
 
 Pulsa `SUPER + Esc` para compactar los workspaces numéricos ocupados hacia la izquierda y eliminar huecos entre ellos. Los workspaces especiales no se modifican.
 
+Pulsa `SUPER + C` o haz clic en el icono de teclado de Waybar para abrir en Rofi una tabla buscable con todos los atajos de Hyprland.
+
+`Impr Pant` permite seleccionar una región y copia la captura al portapapeles. Solo puede existir un selector de captura abierto a la vez.
+
 `swayidle` ejecuta Hyprlock antes de suspender el equipo, incluido al cerrar la tapa, y también responde a las solicitudes de bloqueo de la sesión.
 
 El logo de Fastfetch no se versiona. Si quieres conservarlo, crea `~/.local/share/dotfiles/assets/Civic.jpeg` antes de ejecutar Fastfetch.

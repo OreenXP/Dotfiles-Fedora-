@@ -1,4 +1,9 @@
 {
+  "custom/keybinds": {
+    "format": "",
+    "tooltip-format": "Ver atajos de teclado (SUPER + C)",
+    "on-click": "sh ~/.config/rofi/scripts/shortcuts.sh"
+  },
   "custom/mako": {
     "format": "",
     "tooltip-format": "Notificaciones: clic para cerrar; clic derecho para recuperar la última",

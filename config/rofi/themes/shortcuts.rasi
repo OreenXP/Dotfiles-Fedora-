@@ -1,0 +1,12 @@
+@theme "minimal-dark"
+
+window {
+    width: 760px;
+    y-offset: 0px;
+}
+
+listview {
+    lines: 16;
+    fixed-height: true;
+    scrollbar: true;
+}
