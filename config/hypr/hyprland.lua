@@ -295,6 +295,7 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(terminal .. " --class bluetui -e ${HO
 local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("${HOME}/.local/bin/hyprlock"))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("python3 ~/.config/hypr/scripts/compact-workspaces.py"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))

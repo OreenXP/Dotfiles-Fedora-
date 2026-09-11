@@ -31,6 +31,8 @@ El archivo `config/hypr/hyprland.lua` es el archivo de configuración principal 
 
 El cambio de idioma del teclado usa `us,es`. Pulsa `SUPER + CTRL + Space` para alternar entre English y Español; el idioma activo aparece como una notificación OSD.
 
+Pulsa `SUPER + Esc` para compactar los workspaces numéricos ocupados hacia la izquierda y eliminar huecos entre ellos. Los workspaces especiales no se modifican.
+
 `swayidle` ejecuta Hyprlock antes de suspender el equipo, incluido al cerrar la tapa, y también responde a las solicitudes de bloqueo de la sesión.
 
 El logo de Fastfetch no se versiona. Si quieres conservarlo, crea `~/.local/share/dotfiles/assets/Civic.jpeg` antes de ejecutar Fastfetch.
