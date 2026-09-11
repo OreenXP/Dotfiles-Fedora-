@@ -6,6 +6,7 @@ rofi
 rofi-themes
 fastfetch
 hyprlock
+swayidle
 kitty
 nautilus
 swaybg

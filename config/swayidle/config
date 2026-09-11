@@ -1,0 +1,5 @@
+# Bloquea la sesión cuando logind lo solicita y antes de cualquier suspensión.
+# El cierre de la tapa normalmente provoca una suspensión mediante logind, por
+# lo que también pasa por "before-sleep".
+lock $HOME/.local/bin/lock-screen
+before-sleep $HOME/.local/bin/lock-screen

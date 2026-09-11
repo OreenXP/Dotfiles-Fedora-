@@ -48,7 +48,7 @@ install_packages() {
 
   if command -v dnf >/dev/null 2>&1; then
     local packages=(
-      hyprland hyprland-guiutils waybar mako rofi fastfetch hyprlock kitty
+      hyprland hyprland-guiutils waybar mako rofi fastfetch hyprlock swayidle kitty
       nautilus swaybg grim slurp wl-clipboard playerctl brightnessctl
       ImageMagick libnotify fontawesome-6-free-fonts jetbrains-mono-fonts
       curl unzip cargo bluez bluez-tools iwd util-linux
@@ -148,8 +148,8 @@ configure_iwd() {
 
 finish_install() {
   if systemctl --user daemon-reload 2>/dev/null; then
-    systemctl --user enable --now hypr-wallpaper.service 2>/dev/null || \
-      printf '%s\n' 'Aviso: no se pudo iniciar hypr-wallpaper.service en esta sesión.' >&2
+    systemctl --user enable --now hypr-wallpaper.service swayidle.service 2>/dev/null || \
+      printf '%s\n' 'Aviso: no se pudieron iniciar todos los servicios de usuario en esta sesión.' >&2
   else
     printf '%s\n' 'Aviso: systemd de usuario no está disponible; el servicio se activará al iniciar sesión.' >&2
   fi
