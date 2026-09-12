@@ -4,11 +4,59 @@
     "tooltip-format": "Ver atajos de teclado (SUPER + C)",
     "on-click": "sh ~/.config/rofi/scripts/shortcuts.sh"
   },
-  "custom/mako": {
-    "format": "",
-    "tooltip-format": "Notificaciones: clic para cerrar; clic derecho para recuperar la última",
-    "on-click": "makoctl dismiss -a",
-    "on-click-right": "makoctl restore"
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client --subscribe-waybar",
+    "on-click": "swaync-client --toggle-panel --skip-wait",
+    "on-click-right": "swaync-client --close-all --skip-wait",
+    "escape": true
+  },
+  "custom/media-status": {
+    "return-type": "json",
+    "exec": "python3 ~/.config/waybar/scripts/media-status.py info",
+    "interval": 1,
+    "tooltip": true,
+    "on-click": "python3 ~/.config/waybar/scripts/media-status.py switch"
+  },
+  "custom/media-icon": {
+    "exec": "python3 ~/.config/waybar/scripts/media-status.py icon-plain",
+    "interval": 2,
+    "tooltip": true,
+    "tooltip-format": "Reproductor multimedia"
+  },
+  "custom/media-prev": {
+    "return-type": "json",
+    "exec": "python3 ~/.config/waybar/scripts/media-status.py previous",
+    "interval": 1,
+    "tooltip": true,
+    "on-click": "python3 ~/.config/waybar/scripts/media-status.py control-previous"
+  },
+  "custom/media-toggle": {
+    "return-type": "json",
+    "exec": "python3 ~/.config/waybar/scripts/media-status.py toggle",
+    "interval": 1,
+    "tooltip": true,
+    "on-click": "python3 ~/.config/waybar/scripts/media-status.py control-play-pause"
+  },
+  "custom/media-next": {
+    "return-type": "json",
+    "exec": "python3 ~/.config/waybar/scripts/media-status.py next",
+    "interval": 1,
+    "tooltip": true,
+    "on-click": "python3 ~/.config/waybar/scripts/media-status.py control-next"
   },
   "custom/power": {
     "format": "",

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Switch the keyboard layout and show the selected language through Mako."""
+"""Switch the keyboard layout and show it in the session OSD."""
 import json
+from pathlib import Path
 import subprocess
 
 
@@ -21,10 +22,6 @@ else:
     language = layout or "Desconocido"
 
 subprocess.run([
-    "notify-send",
-    "-a", "hypr-level-osd",
-    "-t", "1500",
-    "-h", "string:x-canonical-private-synchronous:keyboard-layout",
-    "Idioma",
-    language,
+    str(Path(__file__).with_name("session-osd.py")),
+    "text", "Idioma", language, "",
 ], check=True)

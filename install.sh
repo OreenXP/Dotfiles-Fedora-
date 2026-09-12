@@ -48,9 +48,10 @@ install_packages() {
 
   if command -v dnf >/dev/null 2>&1; then
     local packages=(
-      hyprland hyprland-guiutils waybar mako rofi fastfetch hyprlock swayidle kitty
+      hyprland hyprland-guiutils waybar mako SwayNotificationCenter rofi fastfetch hyprlock swayidle kitty
       nautilus swaybg grim slurp wl-clipboard playerctl brightnessctl
-      ImageMagick libnotify fontawesome-6-free-fonts jetbrains-mono-fonts
+      ImageMagick libnotify python3-gobject gtk3 gtk-layer-shell
+      fontawesome-6-free-fonts fontawesome-6-brands-fonts jetbrains-mono-fonts
       curl unzip cargo bluez bluez-tools iwd util-linux
     )
     sudo dnf install -y "${packages[@]}"

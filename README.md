@@ -1,6 +1,6 @@
 # Dotfiles Hyprland
 
-Configuración personal de Hyprland, Waybar, Mako, Rofi, Fastfetch, Kitty y los scripts auxiliares.
+Configuración personal de Hyprland, Waybar, SwayNotificationCenter, Mako, Rofi, Fastfetch, Kitty y los scripts auxiliares.
 
 ## Instalación
 
@@ -29,7 +29,13 @@ El instalador:
 
 El archivo `config/hypr/hyprland.lua` es el archivo de configuración principal de Hyprland. El monitor `eDP-1`, el teclado `us` y los programas definidos reflejan la configuración actual.
 
-El cambio de idioma del teclado usa `us,es`. Pulsa `SUPER + CTRL + Space` para alternar entre English y Español; el idioma activo aparece como una notificación OSD.
+El cambio de idioma del teclado usa `us,es`. Pulsa `SUPER + CTRL + Space` para alternar entre English y Español; el idioma activo aparece en el OSD inferior.
+
+El mismo OSD muestra volumen, brillo y estado del micrófono. `SUPER + SHIFT + P` alterna el touchpad y también muestra su estado; en hardware compatible funcionan además las teclas multimedia correspondientes.
+
+SwayNotificationCenter conserva las notificaciones sólo durante la sesión. `SUPER + N` abre o cierra el panel, el botón `Borrar todo` limpia su contenido y Waybar muestra la campana junto al reloj. Mako queda instalado como respaldo si SwayNotificationCenter no está disponible.
+
+Waybar muestra un bloque multimedia junto a la bandeja cuando detecta Spotify o una reproducción de YouTube en Brave. El nombre y el tiempo alternan el reproductor seleccionado al hacer clic; los botones adyacentes permiten ir a la pista anterior, pausar o continuar y avanzar.
 
 Pulsa `SUPER + Esc` para compactar los workspaces numéricos ocupados hacia la izquierda y eliminar huecos entre ellos. Los workspaces especiales no se modifican.
 

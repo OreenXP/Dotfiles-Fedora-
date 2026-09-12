@@ -1,0 +1,200 @@
+@define-color bg #0b0b0b;
+@define-color bg_hover #1f1f1f;
+@define-color border #2a2a2a;
+@define-color fg #e6e6e6;
+@define-color muted #9a9a9a;
+@define-color urgent #ffb4b4;
+
+:root {
+  --cc-bg: #0b0b0b;
+  --noti-bg: 11, 11, 11;
+  --noti-bg-alpha: 1;
+  --noti-bg-hover: #1f1f1f;
+  --noti-bg-focus: transparent;
+  --noti-border-color: #2a2a2a;
+  --noti-close-bg: transparent;
+  --noti-close-bg-hover: #1f1f1f;
+  --text-color: #e6e6e6;
+  --text-color-disabled: #9a9a9a;
+  --notification-icon-size: 42px;
+  --notification-app-icon-size: 14px;
+  --border-radius: 0px;
+  --notification-shadow: none;
+  --font-size-body: 12px;
+  --font-size-summary: 12px;
+}
+
+* {
+  font-family: "JetBrains Mono", "Symbols Nerd Font Mono", monospace;
+  font-size: 12px;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.blank-window,
+.floating-notifications {
+  background: transparent;
+}
+
+.control-center {
+  background-color: @bg;
+  color: @fg;
+  border: 1px solid @border;
+  padding: 10px;
+}
+
+.control-center-list,
+.control-center-list-placeholder {
+  background: transparent;
+  color: @muted;
+}
+
+.widget-title {
+  color: @fg;
+  margin: 0 0 8px 0;
+}
+
+.widget-title > label {
+  color: @fg;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.widget-title > button {
+  background: transparent;
+  color: @muted;
+  border: 1px solid @border;
+  padding: 5px 9px;
+}
+
+.widget-title > button:hover,
+.notification-action:hover,
+.notification-default-action:hover,
+.close-button:hover {
+  background-color: @bg_hover;
+  color: @fg;
+}
+
+.notification-row {
+  outline: none;
+}
+
+.notification-row:focus,
+.notification-group:focus,
+.notification-default-action:focus {
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.notification-background {
+  background-color: @bg;
+  color: @fg;
+  border: 1px solid @border;
+  margin: 4px 0;
+}
+
+.notification {
+  padding: 8px;
+}
+
+/* Floating popup: keep one outer frame, without a card inside another card. */
+.floating-notifications .notification-row .notification-background {
+  background: @bg;
+  border: 1px solid @border;
+  padding: 0;
+}
+
+.floating-notifications .notification-row .notification-background .notification {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.control-center .notification-background {
+  background: transparent;
+  border: none;
+  margin: 0 4px;
+  padding: 0;
+}
+
+.control-center .control-center-list .notification-row .notification-background .notification {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid @border;
+  box-shadow: none;
+  padding: 3px 0;
+}
+
+.control-center .notification-row .notification-background .notification .notification-default-action {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 5px 2px;
+}
+
+.control-center .notification-row .notification-background .notification .notification-default-action:hover {
+  background: @bg_hover;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+  -gtk-icon-size: 42px;
+  border-radius: 0;
+  margin: 5px 10px 5px 4px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
+  -gtk-icon-size: 14px;
+  margin: 4px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+  color: @fg;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  color: @muted;
+  font-size: 11px;
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+  color: @muted;
+  font-size: 12px;
+}
+
+.notification-content {
+  margin: 4px;
+}
+
+.notification .summary {
+  color: @fg;
+  font-weight: 600;
+}
+
+.notification .body,
+.notification .time {
+  color: @muted;
+}
+
+.notification.critical {
+  border-color: @urgent;
+}
+
+.close-button,
+.notification-action {
+  background: transparent;
+  color: @muted;
+  border: 1px solid @border;
+  padding: 4px 7px;
+  margin: 4px;
+}
+
+scrollbar slider {
+  background-color: @border;
+  min-width: 3px;
+}

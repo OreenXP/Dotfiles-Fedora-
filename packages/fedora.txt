@@ -2,6 +2,7 @@ hyprland
 hyprland-guiutils
 waybar
 mako
+SwayNotificationCenter
 rofi
 rofi-themes
 fastfetch
@@ -17,8 +18,12 @@ playerctl
 brightnessctl
 ImageMagick
 libnotify
+python3-gobject
+gtk3
+gtk-layer-shell
 fontconfig
 fontawesome-6-free-fonts
+fontawesome-6-brands-fonts
 jetbrains-mono-fonts
 curl
 unzip

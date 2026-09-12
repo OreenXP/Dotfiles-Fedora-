@@ -1,5 +1,5 @@
 * {
-	font-family: "JetBrains Mono", "Symbols Nerd Font Mono", "Font Awesome 6 Free", monospace;
+	font-family: "JetBrains Mono", "Symbols Nerd Font Mono", "Font Awesome 6 Free", "Font Awesome 6 Brands", monospace;
 	font-size: 12px;
 	font-weight: 400;
 	min-height: 0;
@@ -79,6 +79,12 @@ tooltip label {
 #custom-settings,
 #custom-spotify,
 #custom-mako,
+#custom-notification,
+#custom-media-icon,
+#custom-media-status,
+#custom-media-prev,
+#custom-media-toggle,
+#custom-media-next,
 #custom-tty,
 #custom-updater,
 #custom-hyprpicker,
@@ -129,8 +135,49 @@ tooltip label {
 #custom-reboot:hover,
 #custom-settings:hover,
 #custom-mako:hover,
+#custom-notification:hover,
+#custom-media-icon:hover,
+#custom-media-status:hover,
+#custom-media-prev:hover,
+#custom-media-toggle:hover,
+#custom-media-next:hover,
 #custom-tty:hover {
 	background-color: #1f1f1f;
+}
+
+#custom-notification.notification {
+	color: #ffffff;
+}
+
+#custom-media-status {
+	font-family: "JetBrains Mono", monospace;
+	color: #e6e6e6;
+	padding-left: 3px;
+	padding-right: 7px;
+}
+
+#custom-media-icon {
+	font-family: "Font Awesome 6 Brands";
+	color: #e6e6e6;
+	padding-left: 5px;
+	padding-right: 2px;
+}
+
+#custom-media-prev,
+#custom-media-toggle,
+#custom-media-next {
+	color: #9a9a9a;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#custom-media-status.empty,
+#custom-media-icon.empty,
+#custom-media-prev.empty,
+#custom-media-toggle.empty,
+#custom-media-next.empty {
+	padding: 0;
+	margin: 0;
 }
 
 #clock {

@@ -1,0 +1,54 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "ignore-gtk-theme": true,
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "overlay",
+  "layer-shell": true,
+  "layer-shell-cover-screen": false,
+  "cssPriority": "user",
+  "control-center-margin-top": 38,
+  "control-center-margin-bottom": 8,
+  "control-center-margin-right": 8,
+  "control-center-margin-left": 8,
+  "control-center-width": 390,
+  "control-center-height": 560,
+  "notification-window-width": 360,
+  "notification-body-image-height": 80,
+  "notification-body-image-width": 80,
+  "notification-2fa-action": true,
+  "notification-inline-replies": true,
+  "notification-grouping": false,
+  "image-visibility": "when-available",
+  "keyboard-shortcuts": true,
+  "relative-timestamps": true,
+  "fit-to-screen": true,
+  "transition-time": 180,
+  "timeout": 6,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "text-empty": "Sin notificaciones en esta sesión",
+  "notification-visibility": {
+    "session-osd": {
+      "state": "ignored",
+      "app-name": "hypr-level-osd"
+    }
+  },
+  "widgets": [
+    "title",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notificaciones",
+      "clear-all-button": true,
+      "button-text": "Borrar todo"
+    },
+    "notifications": {
+      "vexpand": true
+    }
+  }
+}

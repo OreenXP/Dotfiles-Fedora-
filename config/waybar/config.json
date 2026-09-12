@@ -17,10 +17,16 @@
   "modules-left": [
     "hyprland/workspaces#rw",
     "custom/keybinds",
-    "tray"
+    "tray",
+    "custom/media-icon",
+    "custom/media-status",
+    "custom/media-prev",
+    "custom/media-toggle",
+    "custom/media-next"
   ],
   "modules-center": [
-    "clock#2"
+    "clock#2",
+    "custom/notification"
   ],
   "modules-right": [
     "hyprland/window",

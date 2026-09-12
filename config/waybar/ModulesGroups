@@ -93,7 +93,7 @@
       "transition-left-to-right": false
     },
     "modules": [
-      "custom/mako"
+      "custom/notification"
     ]
   },
   "group/power": {
