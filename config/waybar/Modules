@@ -247,7 +247,7 @@
     "tooltip-format-ethernet": "{ifname} 󰌘",
     "tooltip-format-disconnected": "󰌙 Disconnected",
     "max-length": 30,
-    "on-click": "kitty --single-instance --class impala -e ${HOME}/.local/bin/waybar-impala",
+    "on-click": "${HOME}/.local/bin/waybar-impala",
     "format-icons": [
       "󰤯",
       "󰤟",

@@ -6,17 +6,43 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 
 STATE = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "waybar-media-player"
 PLAYER_CACHE = Path(os.environ.get("XDG_RUNTIME_DIR", "/tmp")) / "waybar-media-players.json"
+CACHE_GRACE_SECONDS = 2.0
 
 
 def command(*args: str, check: bool = True) -> str:
     result = subprocess.run(
         list(args), text=True, capture_output=True, check=check
     )
-    return result.stdout.strip()
+    # Preserve leading tabs: playerctl uses them for empty metadata fields.
+    return result.stdout.rstrip("\n")
+
+
+def browser_media_is_youtube(player_name: str) -> bool:
+    """Reject browser players whose metadata clearly belongs to another site."""
+    try:
+        metadata = command(
+            "playerctl", "-p", player_name, "metadata", "--format",
+            "{{xesam:url}}\t{{album}}\t{{title}}",
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
+    url, album, title = (metadata.split("\t", 2) + ["", "", ""])[:3]
+    identifying_text = f"{url} {album} {title}".lower()
+    if "youtube.com" in identifying_text or "youtu.be" in identifying_text:
+        return True
+    if album.strip().lower() == "youtube" or title.strip().lower().endswith(" - youtube"):
+        return True
+
+    # Chromium does not always publish the page URL. These suffixes identify
+    # common non-YouTube media sessions without rejecting normal video titles.
+    other_sites = (" / x", " | tiktok", " - twitch", " • instagram", " | facebook")
+    return not title.strip().lower().endswith(other_sites)
 
 
 def available_players() -> dict[str, str]:
@@ -25,33 +51,49 @@ def available_players() -> dict[str, str]:
     except (subprocess.CalledProcessError, FileNotFoundError):
         players = []
 
-    found: dict[str, str] = {}
+    detected: dict[str, str] = {}
     for player in players:
         lowered = player.lower()
-        if "spotify" in lowered and "spotify" not in found:
-            found["spotify"] = player
-        elif lowered.startswith(("brave", "chromium", "chrome", "google-chrome")):
-            found.setdefault("youtube", player)
+        if "spotify" in lowered and "spotify" not in detected:
+            detected["spotify"] = player
+        elif (
+            lowered.startswith(("brave", "chromium", "chrome", "google-chrome"))
+            and browser_media_is_youtube(player)
+        ):
+            detected.setdefault("youtube", player)
     try:
-        cached = json.loads(PLAYER_CACHE.read_text())
+        raw_cache = json.loads(PLAYER_CACHE.read_text())
     except (OSError, json.JSONDecodeError):
-        cached = {}
+        raw_cache = {}
 
     # MPRIS can briefly omit a player while several Waybar modules refresh.
-    # Keep its last bus name while the corresponding application still exists.
-    if "spotify" not in found and cached.get("spotify"):
-        if subprocess.run(["pgrep", "-x", "spotify"], capture_output=True).returncode == 0:
-            found["spotify"] = cached["spotify"]
-    if "youtube" not in found and cached.get("youtube"):
-        browser = cached["youtube"].split(".", 1)[0]
-        if subprocess.run(["pgrep", "-x", browser], capture_output=True).returncode == 0:
-            found["youtube"] = cached["youtube"]
+    # Retain its bus name only for a short grace period. Checking whether Brave
+    # is running is insufficient because the browser can remain open after the
+    # YouTube tab has been closed.
+    now = time.time()
+    cached: dict[str, dict[str, object]] = {}
+    if isinstance(raw_cache, dict):
+        for kind, entry in raw_cache.items():
+            if isinstance(entry, dict):
+                player = entry.get("player")
+                last_seen = entry.get("last_seen")
+                if isinstance(player, str) and isinstance(last_seen, (int, float)):
+                    cached[kind] = {"player": player, "last_seen": float(last_seen)}
 
-    if found:
-        try:
-            PLAYER_CACHE.write_text(json.dumps({**cached, **found}))
-        except OSError:
-            pass
+    found = dict(detected)
+    next_cache: dict[str, dict[str, object]] = {}
+    for kind, player_name in detected.items():
+        next_cache[kind] = {"player": player_name, "last_seen": now}
+    for kind, entry in cached.items():
+        age = now - float(entry["last_seen"])
+        if kind not in detected and age <= CACHE_GRACE_SECONDS:
+            found[kind] = str(entry["player"])
+            next_cache[kind] = entry
+
+    try:
+        PLAYER_CACHE.write_text(json.dumps(next_cache))
+    except OSError:
+        pass
     return found
 
 

@@ -28,7 +28,7 @@ flock -n 9 || exit 0
     printf '%-32s %s\n' 'SUPER + 1…0' 'Cambiar al workspace 1…10'
     printf '%-32s %s\n' 'SUPER + SHIFT + 1…0' 'Mover ventana al workspace 1…10'
     printf '%-32s %s\n' 'SUPER + S' 'Mostrar workspace especial'
-    printf '%-32s %s\n' 'SUPER + SHIFT + S' 'Mover ventana al workspace especial'
+    printf '%-32s %s\n' 'SUPER + CTRL + SHIFT + S' 'Mover ventana al workspace especial'
     printf '%-32s %s\n' 'SUPER + ←/→/↑/↓' 'Cambiar ventana enfocada'
     printf '%-32s %s\n' 'SUPER + SHIFT + ←/→/↑/↓' 'Mover ventana'
     printf '%-32s %s\n' 'SUPER + CTRL + ←/→/↑/↓' 'Redimensionar ventana'

@@ -14,7 +14,7 @@ THEME = Path(__file__).resolve().parent.parent / "wallpaper-picker.rasi"
 
 
 def files():
-    return sorted(p for p in WALLPAPERS.rglob("*") if p.is_file()
+    return sorted(p for p in WALLPAPERS.iterdir() if p.is_file()
                   and p.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".bmp"))
 
 

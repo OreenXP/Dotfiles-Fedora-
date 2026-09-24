@@ -42,6 +42,14 @@ hl.monitor({
     scale    = 1.3,
 })
 
+-- Secondary display: highest native mode advertised by the panel.
+hl.monitor({
+    output   = "DP-2",
+    mode     = "1920x1080@60",
+    position = "auto",
+    scale    = 1,
+})
+
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -60,11 +68,13 @@ local menu        = "hyprlauncher"
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
 hl.on("hyprland.start", function ()
-    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XCURSOR_THEME XCURSOR_SIZE")
+    -- Flatpak applications use the IBus portal for keyboard input.
+    hl.exec_cmd("ibus-daemon --daemonize --replace --xim")
     hl.exec_cmd("systemctl --user start hyprland-session.target")
     hl.exec_cmd("systemctl --user start swayidle.service")
     hl.exec_cmd("waybar")
-    hl.exec_cmd("sh ~/.config/hypr/scripts/notifications.sh daemon")
+    hl.exec_cmd("systemctl --user start swaync.service")
     hl.exec_cmd("systemctl --user start hypr-wallpaper.service")
 end)
 
@@ -85,6 +95,7 @@ end)
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
 hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Future-dark-cursors")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 
@@ -263,7 +274,8 @@ hl.config({
         natural_scroll = true,
 
         touchpad = {
-            natural_scroll = false,
+            natural_scroll       = false,
+            disable_while_typing = false,
         },
     },
 })
@@ -306,12 +318,15 @@ hl.bind(mainMod .. " + CTRL + space", hl.dsp.exec_cmd("python3 ~/.config/hypr/sc
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("python3 ~/.config/hypr/scripts/touchpad-toggle.py toggle"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("sh ~/.config/waybar/scripts/power-menu.sh"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("sh ~/.config/hypr/scripts/notifications.sh toggle"))
-hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("kitty --single-instance --class impala -e ${HOME}/.local/bin/waybar-impala"))
+hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("${HOME}/.local/bin/waybar-impala"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
--- Screenshot region selection copied to clipboard (single instance)
-hl.bind("Print", hl.dsp.exec_cmd("sh ~/.config/hypr/scripts/screenshot-region.sh"))
+-- Screenshot region selection saved and copied to the clipboard.
+local screenshotCommand = "sh ~/.config/hypr/scripts/screenshot-region.sh"
+hl.bind("Print", hl.dsp.exec_cmd(screenshotCommand))
+hl.bind("Sys_Req", hl.dsp.exec_cmd(screenshotCommand))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshotCommand))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -341,7 +356,7 @@ end
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + CTRL + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -409,6 +424,11 @@ hl.layer_rule({
     match        = { namespace = "^(waybar)$" },
     blur         = true,
     ignore_alpha = 0.1,
+})
+hl.window_rule({
+    name    = "zed-opacity",
+    match   = { class = "^(zed|dev[.]zed[.]Zed)$" },
+    opacity = "1.0 0.80",
 })
 
 local suppressMaximizeRule = hl.window_rule({
